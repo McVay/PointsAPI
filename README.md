@@ -9,7 +9,7 @@ Email: dfmcvay@gmail.com
 This Web API will accept various HTTP requests allowing you to create new user accounts, add points to the user's account balances, and deduct points from the user in a FIFO ordering. If a user tries to redeem a reward worth more than their available point balance it will error out ensuring their balance does not go into the negatives.
 
 ## Implementation
-This project was developed using .NET Core, EF Core, and AutoMapper. It was developed with the idea of being as clean and maintainable as possible and as such a lot of programming paradigms such as Dependency Injection, SoC, Repository Pattern, Unit Of Worker Pattern, and more. While this is not fully production ready, I wanted to get as close as possible. 
+This project was developed using .NET Core, EF Core, and AutoMapper. It was developed with the intention of being as clean and maintainable as possible and utilizies many programming concepts such as Dependency Injection, SoC, Repository Pattern, Unit Of Worker Pattern, and more. While this is not fully production ready, I wanted to get as close as possible. 
 
 Currently, there is no persistent database however it would be fairly trivial to change out the In Memory EF Core database for a persistent one if needed in the future.
 
@@ -22,6 +22,8 @@ Currently, there is no persistent database however it would be fairly trivial to
 1. Clone the repository: git clone https://github.com/McVay/PointsAPI.git
 1. Open the solution file: PointsAPI.sln
 1. Run the application (Program.cs contains the Main program entry point) and take note of the port the application is running on.
+
+> There is also a prepackage .exe you can download from the Releases section if you don't want to install VS.
 
 For the following test examples I will be using a pre-generated user account with and Id of 1, however you can create new user accounts if needed.
 
