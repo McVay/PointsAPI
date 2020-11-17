@@ -6,7 +6,7 @@ Email: dfmcvay@gmail.com
 
 ## Description
 
-This Web API will accept various HTTP requests allowing you to create new user accounts, add points to the user's account balances, and deduct points from the user in a FIFO ordering. If a user tries to redeem a reward worth more than their available point balance it will error out ensuring a user can never have a negative point balance.
+This Web API will accept various HTTP requests allowing you to create new user accounts, add points to the user's account balances, and deduct points from the user in a FIFO ordering. If a user tries to redeem a reward worth more than their available point balance it will error out ensuring their balance does not go into the negatives.
 
 ## Implementation
 This project was developed using .NET Core, EF Core, and AutoMapper and relies heavily on concepts such as Dependency Injection, Separation of Concerns, and various other programming patterns.
