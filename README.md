@@ -15,8 +15,8 @@ Currently, there is no persistent database however it would be fairly trivial to
 
 ## Usage and Testing
 
-- You will need the latest Visual Studio 2019 and the latest .NET Core SDK.
-- The latest SDK and tools can be downloaded from https://dot.net/core.
+- You will need the latest Visual Studio 2019 and .NET Core 3.1 SDK.
+- The SDK and tools can be downloaded from https://dot.net/core.
 - You will need a way to send payloads to the API, for this I would recommend https://www.postman.com/
 
 1. Clone the repository: git clone https://github.com/McVay/PointsAPI.git
