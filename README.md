@@ -23,11 +23,26 @@ Currently, there is no persistent database however it would be fairly trivial to
 1. Open the solution file: PointsAPI.sln
 1. Run the application (Program.cs contains the Main program entry point) and take note of the port the application is running on.
 
+For the following test examples I will be using a pre-generated user account with and Id of 1, however you can create new user accounts if needed.
 
-For the following test examples I will be using a pre-generated user account with and Id of 1.
+### Creating Users
+New users can be created by sending a HTTP POST request to {host}/api/users with the following payload
+
+```json
+{
+    "Name": "New User"
+}
+```
+
+![Alt text](.github/NewUser.png?raw=true "Create User")
+
+### Viewing Users
+Users can be viewed by sending a HTTP GET request to {host}/api/users
+
+![Alt text](.github/GetUsers.png?raw=true "Get User")
 
 #### Adding points
-Points can be added to a user account by sending the following payload in an HTTP POST request to {host}/api/points/{userId}
+Points can be added to a user account by a HTTP POST request to {host}/api/points/{userId} with the following payload
 
 ```json
 {
@@ -41,7 +56,7 @@ Points can be added to a user account by sending the following payload in an HTT
 
 
 #### Deducting points
-Points can be deducted from a user account by sending the following payload in an HTTP POST request to {host}/api/points/{userId}/deduct/{amount}
+Points can be deducted from a user account by sending an HTTP POST request to {host}/api/points/{userId}/deduct/{amount}
 
 ![Alt text](.github/DeductPoints.png?raw=true "Deducting Points")
 
