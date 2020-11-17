@@ -37,9 +37,17 @@ Points can be added to a user account by sending the following payload in an HTT
 }
 ```
 
+![Alt text](.github/NewPoints.png?raw=true "Adding Points")
+
+
 #### Deducting points
 Points can be deducted from a user account by sending the following payload in an HTTP POST request to {host}/api/points/{userId}/deduct/{amount}
+
+![Alt text](.github/DeductPoints.png?raw=true "Deducting Points")
 
 
 #### Viewing point balance
 Point balances can be viewed by sending a HTTP GET request to {host}/api/points/{userId}
+
+![Alt text](.github/GetPoints.png?raw=true "Getting Points")
+
