@@ -10,7 +10,7 @@ namespace PointsAPI.Domain.Repositories
     {
         Task AddPointsToUser(int userId, Point point);
 
-        Task<IEnumerable<UserBalanceResource>> GetPoints(int userId);
+        Task<IEnumerable<Point>> GetPoints(int userId);
 
         Task<IEnumerable<Point>> DeductPointsFromUser(int userId, int amount);
     }

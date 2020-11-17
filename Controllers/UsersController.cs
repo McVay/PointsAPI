@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -17,10 +18,12 @@ namespace PointsAPI.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IUserService _userService;
+        private readonly IMapper _mapper;
 
-        public UsersController(IUserService userService)
+        public UsersController(IUserService userService, IMapper mapper)
         {
             _userService = userService;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -29,8 +32,8 @@ namespace PointsAPI.Controllers
         public async Task<IActionResult> GetAllAsync()
         {
             var users = await _userService.ListAsync();
-            var dtoUsers = users.Select(u => new UserResource() { Id = u.Id, Name = u.Name });
-            return Ok(dtoUsers);
+            var resources = _mapper.Map<IEnumerable<User>, IEnumerable<UserResource>>(users);
+            return Ok(resources);
         }
 
         [HttpGet("{id}")]
@@ -43,8 +46,8 @@ namespace PointsAPI.Controllers
             if (user == null)
                 return NotFound();
 
-            var dtoUser = new UserResource() { Id = user.Id, Name = user.Name };
-            return Ok(dtoUser);
+            var resource = _mapper.Map<User, UserResource>(user);
+            return Ok(resource);
         }
 
         [HttpPost]

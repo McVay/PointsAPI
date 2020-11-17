@@ -19,7 +19,7 @@ namespace PointsAPI.Services
             _unitOfwork = unitOfWork;
         }
 
-        public async Task<IEnumerable<UserBalanceResource>> GetPoints(int userId)
+        public async Task<IEnumerable<Point>> GetPoints(int userId)
         {
             return await _pointRepository.GetPoints(userId);
         }

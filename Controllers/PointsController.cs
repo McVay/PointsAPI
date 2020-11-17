@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PointsAPI.Domain.Models;
-using PointsAPI.Domain.Repositories;
 using PointsAPI.Domain.Services;
 
 namespace PointsAPI.Controllers
@@ -16,11 +15,13 @@ namespace PointsAPI.Controllers
     {
         private readonly IUserService _userService;
         private readonly IPointsService _pointService;
+        private readonly IMapper _mapper;
 
-        public PointsController(IUserService userService, IPointsService pointService)
+        public PointsController(IUserService userService, IPointsService pointService, IMapper mapper)
         {
             _userService = userService;
             _pointService = pointService;
+            _mapper = mapper;
         }
 
         [HttpGet("{id}")]
@@ -33,9 +34,10 @@ namespace PointsAPI.Controllers
             if (user == null)
                 return NotFound();
 
-            var pointsBalance = await _pointService.GetPoints(id);
+            var points = await _pointService.GetPoints(id);
+            var resource = _mapper.Map<IEnumerable<Point>, IEnumerable<UserBalanceResource>>(points);
 
-            return Ok(pointsBalance);
+            return Ok(resource);
         }
 
         [HttpPost("{id}")]
@@ -75,15 +77,9 @@ namespace PointsAPI.Controllers
                 return BadRequest();
 
             var newPoints = await _pointService.DeductPointsFromUser(id, amount);
+            var resource = _mapper.Map<IEnumerable<Point>, IEnumerable<PointResource>>(newPoints);
 
-            var pointsResource = newPoints.Select(p => new PointResource
-            {
-                PayerName = p.PayerName,
-                PointsBalance = p.Amount,
-                TransactionDate = p.TransactionDate
-            });
-
-            return Ok(pointsResource);
+            return Ok(resource);
         }
     }
 }
