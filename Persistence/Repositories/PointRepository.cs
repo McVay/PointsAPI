@@ -40,7 +40,7 @@ namespace PointsAPI.Persistence.Repositories
                 }
 
                 // If the point amount is negative, we need to take away any points we've already deducted and put it back in the remaining amount
-                if (point.Amount < 0 && deductedPoints[point.PayerName] > 0)
+                if (point.Amount < 0)
                 {
                     var currentDeduction = deductedPoints[point.PayerName];
                     var pointsToAddBack = currentDeduction + point.Amount > 0 ? Math.Abs(point.Amount) : currentDeduction;

@@ -59,8 +59,7 @@ namespace PointsAPI.Controllers
             return CreatedAtAction(nameof(GetPoints), new { id = user.Id }, user);
         }
 
-        [HttpPut("{id}/deduct/{amount}")]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [HttpPost("{id}/deduct/{amount}")]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> DeductPointsFromUser(int id, int amount)
